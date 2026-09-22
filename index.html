@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emi Windiyanti - Portfolio Eksklusif</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --dark-bg: #0f0f0f;
+            --dark-card: #1a1a1a;
+            --text-main: #f0f0f0;
+            --text-muted: #9ca3af;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+            cursor: none; /* Hide default cursor for custom one */
+        }
+
+        ::selection {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button, input, textarea {
+            font-family: inherit;
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .text-center { text-align: center; }
+        .text-gold { color: var(--gold); }
+        .text-white { color: #ffffff; }
+        .text-muted { color: var(--text-muted); }
+        
+        .font-serif { font-family: var(--font-serif); }
+        .font-light { font-weight: 300; }
+        .font-bold { font-weight: 700; }
+        
+        .tracking-widest { letter-spacing: 0.1em; }
+        .tracking-extreme { letter-spacing: 0.3em; }
+        .uppercase { text-transform: uppercase; }
+        .italic { font-style: italic; }
+
+        .d-flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .align-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-end { justify-content: flex-end; }
+        
+        .grid { display: grid; }
+        .gap-4 { gap: 1rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-12 { gap: 3rem; }
+
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+
+        @media (min-width: 768px) {
+            .container { padding: 0 3rem; }
+            .section { padding: 8rem 0; }
+            .md-flex-row { flex-direction: row; }
+            .md-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+            .md-grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+            .md-grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+            .hidden-md { display: none !important; }
+        }
+        
+        @media (max-width: 767px) {
+            .hidden-mobile { display: none !important; }
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Hover Effects */
+        .hover-gold { transition: var(--transition); }
+        .hover-gold:hover { color: var(--gold); }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background-color: var(--gold);
+        }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            transition: transform 0.1s ease-out, background-color 0.2s;
+        }
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-outline { display: none; }
+            body { cursor: auto; }
+        }
+
+        /* Scroll Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        /* Buttons */
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 1rem 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark-bg);
+            z-index: 10000;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .loader-line {
+            width: 100px; height: 2px;
+            background: rgba(212, 175, 55, 0.2);
+            position: relative; overflow: hidden;
+        }
+        .loader-line::after {
+            content: ''; position: absolute; left: -50%; width: 50%; height: 100%;
+            background: var(--gold);
+            animation: loading 1.5s ease-in-out infinite;
+        }
+        @keyframes loading {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            padding: 0.75rem 0;
+            background: rgba(15, 15, 15, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            transition: var(--transition);
+        }
+        .nav-logo:hover { color: white; }
+        
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: white; }
+        
+        .mobile-menu-btn {
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: absolute;
+            top: 100%; left: 0; width: 100%;
+            background: rgba(15, 15, 15, 0.98);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 2rem 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: white; font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 5rem;
+        }
+        .hero-subtitle { font-size: 0.875rem; margin-bottom: 1rem; }
+        .hero-title {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .hero-title { font-size: 4.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .hero-title { font-size: 5.5rem; }
+        }
+        .hero-desc {
+            max-width: 42rem;
+            margin: 0 auto 2.5rem;
+            font-size: 1.125rem;
+        }
+        .social-icons {
+            display: flex; gap: 2rem;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .social-icons a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .social-icons a:hover {
+            color: var(--gold);
+            transform: translateY(-4px);
+        }
+        
+        .scroll-indicator {
+            position: absolute; bottom: 2.5rem; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center;
+            animation: bounce 2s infinite;
+        }
+        .scroll-text { font-size: 0.75rem; color: #6b7280; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .scroll-line { width: 1px; height: 3rem; background: linear-gradient(to bottom, var(--gold), transparent); }
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, -10px); }
+        }
+
+        .about-grid { display: flex; flex-direction: column; gap: 4rem; align-items: center; }
+        .about-img-wrapper { width: 100%; position: relative; }
+        .about-img-bg {
+            position: absolute; inset: 0;
+            background: var(--gold);
+            transform: translate(1rem, 1rem);
+            z-index: -1;
+            transition: transform 0.5s ease;
+        }
+        .about-img-wrapper:hover .about-img-bg { transform: translate(1.5rem, 1.5rem); }
+        .about-img {
+            width: 100%; aspect-ratio: 3/4; object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.7s ease;
+        }
+        .about-img-wrapper:hover .about-img { filter: grayscale(0%); }
+        .about-content { width: 100%; }
+        
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .section-subtitle { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display: block; }
+        @media (min-width: 768px) {
+            .about-grid { flex-direction: row; }
+            .about-img-wrapper, .about-content { width: 50%; }
+            .section-title { font-size: 3rem; }
+        }
+        
+        .about-text p { margin-bottom: 1.5rem; color: var(--text-muted); }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2.5rem; }
+        .stat-number { font-size: 2.25rem; color: white; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.75rem; color: #6b7280; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        .skills-section { background-color: rgba(26, 26, 26, 0.3); }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+        @media (min-width: 768px) { .skills-grid { grid-template-columns: repeat(4, 1fr); } }
+        
+        .skill-item { display: flex; flex-direction: column; align-items: center; }
+        .skill-icon-box {
+            width: 5rem; height: 5rem;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex; justify-content: center; align-items: center;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .skill-icon-bg {
+            position: absolute; inset: 0;
+            background: rgba(212, 175, 55, 0.1);
+            transform: scale(0);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        .skill-icon-box i { font-size: 1.875rem; color: var(--text-muted); position: relative; z-index: 10; transition: var(--transition); }
+        
+        .skill-item:hover .skill-icon-box { border-color: var(--gold); }
+        .skill-item:hover .skill-icon-bg { transform: scale(1); }
+        .skill-item:hover .skill-icon-box i { color: var(--gold); }
+        .skill-title { font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; color: white; }
+
+        .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+        .view-all-link { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; transition: var(--transition); }
+        .view-all-link:hover { color: white; }
+        
+        .projects-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        @media (min-width: 768px) {
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .project-card.offset { margin-top: 6rem; }
+        }
+
+        .project-card {
+            background: var(--dark-card);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .project-card:hover { transform: scale(1.02); }
+        .project-img-container { aspect-ratio: 4/3; overflow: hidden; }
+        .project-img {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.8;
+            transition: all 0.7s ease;
+        }
+        .project-card:hover .project-img { opacity: 1; transform: scale(1.1); }
+        
+        .project-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+            opacity: 0.8;
+        }
+        
+        .project-info {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            padding: 2rem;
+            transform: translateY(1rem);
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .project-info { transform: translateY(0); }
+        .project-category { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .project-title { font-size: 1.875rem; color: white; margin-bottom: 0.5rem; }
+        .project-line { height: 1px; width: 0; background: var(--gold); transition: width 0.7s ease; }
+        .project-card:hover .project-line { width: 100%; }
+
+        .mobile-view-all { margin-top: 3rem; text-align: center; }
+
+        .contact-section { position: relative; overflow: hidden; }
+        .contact-bg-decor {
+            position: absolute; top: 0; right: -5rem;
+            font-size: 20rem; font-family: var(--font-serif);
+            color: rgba(255,255,255,0.02);
+            pointer-events: none; user-select: none;
+            line-height: 1;
+        }
+        .contact-container { max-width: 56rem; margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        @media (min-width: 768px) {
+            .contact-grid { grid-template-columns: 2fr 3fr; }
+        }
+        
+        .contact-info-block { margin-bottom: 2rem; }
+        .contact-label { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .contact-email { font-size: 1.125rem; color: white; transition: var(--transition); font-family: var(--font-serif); }
+        .contact-email:hover { color: var(--gold); }
+        .contact-text { color: var(--text-muted); font-weight: 300; }
+        
+        .contact-social { display: flex; gap: 1.5rem; }
+        .contact-social a { color: var(--text-muted); font-size: 1.25rem; transition: var(--transition); }
+        .contact-social a:hover { color: var(--gold); }
+
+        .form-group { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+        .form-input {
+            width: 100%;
+            color: white;
+            font-weight: 300;
+            padding: 0.5rem 0;
+        }
+        .form-input::placeholder { color: #4b5563; }
+        textarea.form-input { resize: none; }
+        
+        .btn-submit {
+            width: 100%;
+            position: relative;
+            padding: 1rem 2rem;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .btn-submit span { position: relative; z-index: 10; }
+        .btn-submit-bg {
+            position: absolute; inset: 0; background: var(--gold);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        .btn-submit:hover { color: var(--dark-bg); }
+        .btn-submit:hover .btn-submit-bg { transform: scaleX(1); }
+
+        .footer {
+            padding: 2rem 0;
+            background: var(--dark-bg);
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-line"></div>
+    </div>
+
+    <div class="cursor-dot hidden-mobile"></div>
+    <div class="cursor-outline hidden-mobile"></div>
+
+    <nav class="navbar glass" id="navbar">
+        <div class="container d-flex justify-between align-center">
+            <a href="#" class="font-serif nav-logo">NK.</a>
+            
+            <!-- Desktop Menu -->
+            <ul class="nav-links hidden-mobile">
+                <li><a href="#home" class="hover-gold">Beranda</a></li>
+                <li><a href="#about" class="hover-gold">Tentang</a></li>
+                <li><a href="#skills" class="hover-gold">Keahlian</a></li>
+                <li><a href="#projects" class="hover-gold">Proyek</a></li>
+                <li><a href="#contact" class="hover-gold">Kontak</a></li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn hidden-md" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden-md" id="mobile-menu">
+            <a href="#home" class="mobile-link hover-gold">Beranda</a>
+            <a href="#about" class="mobile-link hover-gold">Tentang</a>
+            <a href="#skills" class="mobile-link hover-gold">Keahlian</a>
+            <a href="#projects" class="mobile-link hover-gold">Proyek</a>
+            <a href="#contact" class="mobile-link hover-gold">Kontak</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero relative">
+        <div class="container text-center relative fade-in-up">
+            <p class="text-gold tracking-extreme uppercase hero-subtitle">Portofolio Profesional</p>
+            <h1 class="font-serif font-bold hero-title">
+                <span class="text-white" style="display: block;">Halo, Saya</span>
+                <span class="text-gold">Emi Windiyanti</span>
+            </h1>
+            <p class="text-muted font-light hero-desc">
+                Menciptakan pengalaman digital yang elegan, memadukan estetika mewah dengan fungsionalitas modern.
+            </p>
+            
+            <div class="d-flex flex-col align-center">
+                <!-- Ikon Sosial Media -->
+                <div class="social-icons">
+                    <a href="mailto:halo@namakamu.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+
+                <a href="#contact" class="btn-outline">Mulai Diskusi</a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <span class="scroll-text">Gulir ke Bawah</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <!-- Image -->
+                <div class="about-img-wrapper fade-in-up">
+                    <div class="about-img-bg"></div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Potret Profil" class="about-img">
+                </div>
+                
+                <!-- Content -->
+                <div class="about-content fade-in-up">
+                    <h2 class="font-serif text-white section-title">Sebuah <span class="text-gold italic">Simfoni</span> Digital</h2>
+                    <span class="section-subtitle">Filosofi Desain & Pengembangan</span>
+                    
+                    <div class="about-text font-light">
+                        <p>Dalam setiap baris kode dan setiap piksel yang dirancang, saya mencari harmoni. Fokus saya adalah menciptakan identitas visual yang tidak hanya indah secara estetika, tetapi juga kuat secara fungsional.</p>
+                        <p>Dengan pengalaman lebih dari X tahun di industri kreatif digital, saya telah berkolaborasi dengan berbagai merek premium untuk mewujudkan visi mereka ke dalam kanvas digital yang interaktif dan berkesan.</p>
+                        <p>Saya percaya bahwa kemewahan sejati dalam dunia digital terletak pada kesederhanaan, kecepatan, dan perhatian pada detail yang terkecil.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div>
+                            <p class="font-serif stat-number">5+</p>
+                            <p class="stat-label">Tahun Pengalaman</p>
+                        </div>
+                        <div>
+                            <p class="font-serif stat-number">50+</p>
+                            <p class="stat-label">Proyek Selesai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="skills" class="section skills-section">
+        <div class="container text-center">
+            <h2 class="font-serif text-white section-title fade-in-up" style="margin-bottom: 1rem;">Keahlian <span class="text-gold italic">Utama</span></h2>
+            <p class="text-muted font-light fade-in-up" style="max-width: 42rem; margin: 0 auto;">Kombinasi antara seni desain dan logika pemrograman untuk menghasilkan karya yang sempurna.</p>
+
+            <div class="skills-grid fade-in-up">
+                <div class="skill-item">
+                    <div class="skill-icon-box">
+                        <div class="skill-icon-bg"></div>
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3 class="skill-title">HTML & CSS</h3>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-box">
+                        <div class="skill-icon-bg"></div>
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <h3 class="skill-title">JavaScript</h3>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-box">
+                        <div class="skill-icon-bg"></div>
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3 class="skill-title">React JS</h3>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon-box">
+                        <div class="skill-icon-bg"></div>
+                        <i class="fab fa-figma"></i>
+                    </div>
+                    <h3 class="skill-title">UI/UX Design</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="projects-header fade-in-up">
+                <div>
+                    <h2 class="font-serif text-white section-title" style="margin-bottom: 0.5rem;">Karya <span class="text-gold italic">Terpilih</span></h2>
+                    <p class="text-muted font-light">Koleksi proyek digital eksklusif.</p>
+                </div>
+                <div class="hidden-mobile">
+                    <a href="#" class="view-all-link">Lihat Semua Karya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card fade-in-up">
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proyek 1" class="project-img">
+                    </div>
+                    <div class="project-overlay"></div>
+                    <div class="project-info">
+                        <p class="project-category">Web Design • Perhiasan</p>
+                        <h3 class="font-serif project-title">Aura Elegance</h3>
+                        <div class="project-line"></div>
+                    </div>
+                </div>
+
+                <!-- Project 2 (Offset on desktop) -->
+                <div class="project-card offset fade-in-up">
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proyek 2" class="project-img">
+                    </div>
+                    <div class="project-overlay"></div>
+                    <div class="project-info">
+                        <p class="project-category">Arsitektur • Real Estate</p>
+                        <h3 class="font-serif project-title">The Pinnacle</h3>
+                        <div class="project-line"></div>
+                    </div>
+                </div>
+                
+                 <!-- Project 3 -->
+                 <div class="project-card fade-in-up">
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proyek 3" class="project-img">
+                    </div>
+                    <div class="project-overlay"></div>
+                    <div class="project-info">
+                        <p class="project-category">Branding • Butik</p>
+                        <h3 class="font-serif project-title">Maison Noir</h3>
+                        <div class="project-line"></div>
+                    </div>
+                </div>
+
+                <!-- Project 4 (Offset on desktop) -->
+                <div class="project-card offset fade-in-up">
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proyek 4" class="project-img">
+                    </div>
+                    <div class="project-overlay"></div>
+                    <div class="project-info">
+                        <p class="project-category">Otomotif • Konsep Web</p>
+                        <h3 class="font-serif project-title">Veloce Motors</h3>
+                        <div class="project-line"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mobile-view-all hidden-md fade-in-up">
+                <a href="#" class="btn-outline">Lihat Semua Karya</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="contact" class="section contact-section">
+        <div class="contact-bg-decor">&</div>
+
+        <div class="container contact-container">
+            <div class="text-center fade-in-up" style="margin-bottom: 4rem;">
+                <h2 class="font-serif text-white section-title" style="margin-bottom: 1rem;">Mari <span class="text-gold italic">Berkolaborasi</span></h2>
+                <p class="text-muted font-light">Siap untuk mengangkat presensi digital brand Anda? Tinggalkan pesan.</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Info -->
+                <div class="fade-in-up">
+                    <div class="contact-info-block">
+                        <p class="contact-label">Hubungi Saya</p>
+                        <a href="mailto:halo@namakamu.com" class="contact-email">halo@namakamu.com</a>
+                    </div>
+                    <div class="contact-info-block">
+                        <p class="contact-label">Lokasi</p>
+                        <p class="contact-text">Jakarta, Indonesia<br>Tersedia untuk seluruh dunia.</p>
+                    </div>
+                    <div class="contact-info-block">
+                        <p class="contact-label" style="margin-bottom: 1rem;">Sosial Media</p>
+                        <div class="contact-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="fade-in-up">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Nama Lengkap" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Alamat Email" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" placeholder="Ceritakan tentang proyek Anda..." class="form-input"></textarea>
+                        </div>
+                        <button type="button" class="btn-submit">
+                            <span>Kirim Pesan</span>
+                            <div class="btn-submit-bg"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Emi Windiyanti. Didesain secara eksklusif.</p>
+    </footer>
+
+    <script>
+        // Menghilangkan Preloader saat halaman dimuat
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Kursor Kustom
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            if(window.innerWidth > 768) {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                if(cursorDot) {
+                    cursorDot.style.left = `${posX}px`;
+                    cursorDot.style.top = `${posY}px`;
+                }
+
+                if(cursorOutline) {
+                    setTimeout(() => {
+                        cursorOutline.style.left = `${posX}px`;
+                        cursorOutline.style.top = `${posY}px`;
+                    }, 50);
+                }
+            }
+        });
+
+        // Efek kursor saat hover pada elemen interaktif
+        const interactives = document.querySelectorAll('a, button, input, textarea, .project-card');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if(cursorOutline && window.innerWidth > 768) {
+                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursorOutline.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
+                }
+            });
+            el.addEventListener('mouseleave', () => {
+                if(cursorOutline && window.innerWidth > 768) {
+                    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursorOutline.style.backgroundColor = 'transparent';
+                }
+            });
+        });
+
+        // Navbar Background on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            menu.classList.toggle('active');
+            if(menu.classList.contains('active')){
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+
+        // Tutup menu saat link diklik
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Animasi Scroll (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        const fadeElements = document.querySelectorAll('.fade-in-up');
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
